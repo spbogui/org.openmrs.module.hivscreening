@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
+                  http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
+    <!--
+        See http://www.liquibase.org/manual/home#available_database_refactorings
+        for a list of supported elements and attributes
+    -->
+
+    <changeSet id="hiv-screening-table-testing-kit" author="BOGUI SERGE">
+        <createTable tableName="hiv_screening_testing_kit">
+            <column name="testing_kit_id" type="int" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="batch_number" type="varchar(20)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="expiry_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_created" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="location_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="count_usage" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="uuid" type="varchar(38)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="hiv_screening_testing_kit" baseColumnNames="location_id"
+                                               constraintName="hiv_screening_testing_kit_location"
+                                               referencedTableName="location"
+                                               referencedColumnNames="location_id"/>
+    </changeSet>
+
+    <changeSet id="hiv-screening-table-screening-register-info" author="BOGUI SERGE">
+        <createTable tableName="hiv_screening_screening_register_info">
+            <column name="screening_info_id" type="int" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="screening_site_type" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="testing1_kit" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="lab_testing_kit" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="testing2_kit" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="location_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="uuid" type="varchar(38)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="hiv_screening_screening_register_info" baseColumnNames="testing1_kit"
+                                 constraintName="hiv_screening_screening_register_info_testing1_kit"
+                                 referencedTableName="hiv_screening_testing_kit"
+                                 referencedColumnNames="testing_kit_id"/>
+
+        <addForeignKeyConstraint baseTableName="hiv_screening_screening_register_info" baseColumnNames="testing2_kit"
+                                 constraintName="hiv_screening_screening_register_info_testing2_kit"
+                                 referencedTableName="hiv_screening_testing_kit"
+                                 referencedColumnNames="testing_kit_id"/>
+
+        <addForeignKeyConstraint baseTableName="hiv_screening_screening_register_info" baseColumnNames="lab_testing_kit"
+                                 constraintName="hiv_screening_screening_register_info_lab_testing_kit"
+                                 referencedTableName="hiv_screening_testing_kit"
+                                 referencedColumnNames="testing_kit_id"/>
+
+        <addForeignKeyConstraint baseTableName="hiv_screening_screening_register_info" baseColumnNames="location_id"
+                                 constraintName="hiv_screening_screening_register_info_location"
+                                 referencedTableName="location"
+                                 referencedColumnNames="location_id"/>
+    </changeSet>
+
+    <changeSet id="hiv-screening-table-hiv-screening" author="BOGUI SERGE">
+        <createTable tableName="hiv_screening_hiv_screening">
+            <column name="hiv_screening_id" type="int" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="register_info" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="screening_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="screening_code" type="varchar(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="profession" type="varchar(255)"/>
+            <column name="gender" type="varchar(2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="age" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="residence" type="varchar(255)"/>
+            <column name="marital_status" type="int"/>
+            <column name="other_marital_status" type="varchar(255)"/>
+            <column name="population_type" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="screening_reason" type="int"/>
+            <column name="other_screening_reason" type="varchar(255)"/>
+            <column name="invalidated_test1" type="tinyint(1)"/>
+            <column name="test1_reaction" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="invalidated_test2" type="tinyint(1)"/>
+            <column name="test2_reaction" type="int"/>
+            <column name="invalidated_test3" type="tinyint(1)"/>
+            <column name="test3_reaction" type="int"/>
+            <column name="final_result" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="result_announcing_date" type="date"/>
+            <column name="retesting" type="tinyint(1)"/>
+            <column name="comment" type="int"/>
+            <column name="location_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="uuid" type="varchar(38)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="hiv_screening_hiv_screening" baseColumnNames="register_info"
+                                 constraintName="hiv_screening_hiv_screening_register_info"
+                                 referencedTableName="hiv_screening_screening_register_info"
+                                 referencedColumnNames="screening_info_id"/>
+
+        <addForeignKeyConstraint baseTableName="hiv_screening_hiv_screening" baseColumnNames="location_id"
+                                 constraintName="hiv_screening_hiv_screening_location"
+                                 referencedTableName="location"
+                                 referencedColumnNames="location_id"/>
+    </changeSet>
+
+    <changeSet id="hiv-screening-add-column-register-info" author="BOGUI SERGE">
+        <addColumn tableName="hiv_screening_screening_register_info">
+            <column name="date_created" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="screening_post" type="varchar(2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="register_code" type="varchar(2)">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="hiv-screening-remove-null-register-info-lab-kit" author="BOGUI SERGE">
+        <dropNotNullConstraint tableName="hiv_screening_screening_register_info" columnName="lab_testing_kit" columnDataType="int"/>
+    </changeSet>
+
+    <changeSet id="hiv-screening-add-column-hiv-screening-table" author="BOGUI SERGE">
+        <addColumn tableName="hiv_screening_hiv_screening">
+            <column name="other_population_type" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="hiv-screening-add-column-hiv-screening-test" author="BOGUI SERGE">
+        <addColumn tableName="hiv_screening_hiv_screening">
+            <column name="sampling" type="varchar(50)"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="hiv-screening-remove-unique-batch-number" author="BOGUI SERGE">
+        <dropUniqueConstraint tableName="hiv_screening_testing_kit" constraintName="batch_number"/>
+    </changeSet>
+
+    <changeSet id="hiv-screening-remove-not-null-age" author="BOGUI SERGE">
+        <dropNotNullConstraint tableName="hiv_screening_hiv_screening" columnName="age" columnDataType="int" />
+    </changeSet>
+
+    <changeSet id="hiv-screening-remove-not-null-population-type" author="BOGUI SERGE">
+        <dropNotNullConstraint tableName="hiv_screening_hiv_screening" columnName="population_type" columnDataType="int" />
+    </changeSet>
+
+    <changeSet id="hiv-screening-remove-not-null-gender" author="BOGUI SERGE">
+        <dropNotNullConstraint tableName="hiv_screening_hiv_screening" columnName="gender" columnDataType="varchar(2)" />
+    </changeSet>
+
+    <changeSet id="hiv-screening-remove-not-null-screening-code" author="BOGUI SERGE">
+        <dropNotNullConstraint tableName="hiv_screening_hiv_screening" columnName="screening_code" columnDataType="varchar(20)" />
+    </changeSet>
+</databaseChangeLog>

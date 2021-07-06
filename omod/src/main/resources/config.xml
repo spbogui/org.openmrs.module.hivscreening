@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<module configVersion="1.2">
+
+	<!-- Module Properties -->
+	<id>${project.parent.artifactId}</id>
+	<name>${project.parent.name}</name>
+	<version>${project.parent.version}</version>
+	<package>${project.parent.groupId}.${project.parent.artifactId}</package>
+	<author>BOGUI SERGE</author>
+	<description>
+		${project.parent.description}
+	</description>
+	<updateURL>https://modules.openmrs.org/modules/download/${project.parent.artifactId}/update.rdf</updateURL>
+	<require_version>${openMRSVersion}</require_version>
+	<!-- / Module Properties -->
+
+	
+	<!-- Module Activator -->
+	<activator>${project.parent.groupId}.${project.parent.artifactId}.HivScreeningRegisterActivator</activator>
+	
+	
+	<!-- Adds link to admin page -->
+	<extension>
+		<point>org.openmrs.admin.list</point>
+		<class>${project.parent.groupId}.${project.parent.artifactId}.extension.html.AdminList</class>
+	</extension>
+	
+	<!-- Maps hibernate file's, if present -->
+<!--	<mappingFiles>-->
+<!--				-->
+<!--		HivScreeningRegister.hbm.xml-->
+<!--				-->
+<!--	</mappingFiles>-->
+
+	<packagesWithMappedClasses>
+		org.openmrs.module.hivscreening
+	</packagesWithMappedClasses>
+
+	<!-- Adds link to admin page -->
+	<extension>
+		<point>org.openmrs.admin.list</point>
+		<class>${project.parent.groupId}.${project.parent.artifactId}.extension.html.AdminList</class>
+	</extension>
+	<!-- Adds link to menu bar -->
+	<extension>
+		<point>org.openmrs.gutter.tools</point>
+		<class>${project.parent.groupId}.${project.parent.artifactId}.extension.html.HivScreeningRegisterGutterLink
+		</class>
+	</extension>
+
+	<!-- Global Properties -->
+	<globalProperty>
+		<property>hivScreening.test1Kits</property>
+		<defaultValue>Determine:100</defaultValue>
+		<description>Insert here the test 1 kit name and the number of tests separated by colon</description>
+	</globalProperty>
+	<globalProperty>
+		<property>hivScreening.test2AndLabTest3Kits</property>
+		<defaultValue>Statpak:20</defaultValue>
+		<description>Insert here the test 2 and lab test 3 kits name and the number of tests separated by colon</description>
+	</globalProperty>
+	<globalProperty>
+		<property>hivScreening.labTest2Kits</property>
+		<defaultValue>Bioline:25</defaultValue>
+		<description>Insert here the test 1 kit name and the number of tests separated by colon</description>
+	</globalProperty>
+
+	<!-- Privileges -->
+	<privilege>
+		<name>Manage Hiv Screening Register</name>
+		<description>Can Manage Hiv Screening Register</description>
+	</privilege>
+	<!--/ Privileges -->
+
+	<!-- Internationalization -->
+	<!-- All message codes should start with ${project.parent.artifactId}. -->
+	<messages>
+		<lang>en</lang>
+		<file>messages.properties</file>
+	</messages>
+	<messages>
+		<lang>fr</lang>
+		<file>messages_fr.properties</file>
+	</messages>
+	<messages>
+		<lang>es</lang>
+		<file>messages_es.properties</file>
+	</messages>
+	<!-- /Internationalization -->
+
+</module>
+

@@ -1,0 +1,172 @@
+.required {
+    color: darkred;
+}
+
+body {
+    font-size: 12px;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    overflow-y: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#pageBody {
+    overflow-y: auto;
+    height: 100%;
+}
+
+input[type=text].form-control {
+    border-radius: 0;
+    padding: 5px;
+}
+
+.bg-turquoise {
+    background-color: #1abc9c;
+}
+
+.bg-green-sea {
+    background-color: #16a085;
+}
+
+.bg-emerald {
+    background-color: #2ecc71;
+}
+
+.bg-nephritis {
+    background-color: #27ae60;
+}
+
+.bg-peter-river {
+    background-color: #3498db;
+}
+
+.bg-belize-hole {
+    background-color: #2980b9;
+}
+
+.bg-jade-just {
+    background-color: #00d2d3;
+}
+
+.bg-cyanite {
+    background-color: #0abde3;
+}
+
+.bg-joust-blue {
+    background-color: #54a0ff;
+}
+
+.bg-blue-de-france {
+    background-color: #2e86de;
+}
+
+.bg-clear-chill {
+    background-color: #1e90ff;
+}
+
+.bg-summer-sky {
+    background-color: #34ace0;
+}
+
+a.text-decoration-none {
+    text-decoration: none;
+}
+
+.bg-gray { background-color: lightgray;}
+
+
+ul.ks-cboxtags {
+    list-style: none;
+    padding: 0px;
+}
+ul.ks-cboxtags li{
+    display: inline;
+}
+ul.ks-cboxtags li label{
+    display: inline-block;
+    background-color: rgba(255, 255, 255, .9);
+    border: 2px solid rgba(139, 139, 139, .3);
+    color: #1b1e21;
+    border-radius: 25px;
+    white-space: nowrap;
+    margin: 2px 0px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: all .2s;
+}
+
+ul.ks-cboxtags li label {
+    padding: 3px 6px;
+    cursor: pointer;
+    font-size: 10px;
+}
+
+/*ul.ks-cboxtags li label::before {*/
+/*    display: inline-block;*/
+/*    font-style: normal;*/
+/*    font-variant: normal;*/
+/*    text-rendering: auto;*/
+/*    -webkit-font-smoothing: antialiased;*/
+/*    font-family: "Font Awesome 5 Free";*/
+/*    font-weight: 900;*/
+/*    font-size: 12px;*/
+/*    padding: 2px 6px 2px 2px;*/
+/*    !*content: "\f067";*!*/
+/*    transition: transform .3s ease-in-out;*/
+/*}*/
+
+/*ul.ks-cboxtags li input[type="checkbox"]:checked + label::before {*/
+/*    !*content: "\f00c";*!*/
+/*    transform: rotate(-360deg);*/
+/*    transition: transform .3s ease-in-out;*/
+/*}*/
+
+ul.ks-cboxtags li input[type="checkbox"]:checked + label {
+    border: 2px solid #1bdbf8;
+    background-color: #12bbd4;
+    color: #fff;
+    transition: all .2s;
+}
+
+ul.ks-cboxtags li input[type="checkbox"] {
+    display: absolute;
+}
+ul.ks-cboxtags li input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+}
+ul.ks-cboxtags li input[type="checkbox"]:focus + label {
+    border: 2px solid #e9a1ff;
+}
+
+
+/*Radio*/
+/*ul.ks-cboxtags li input[type="radio"]:checked + label::before {*/
+/*    !*content: "\f00c";*!*/
+/*    transform: rotate(-360deg);*/
+/*    transition: transform .3s ease-in-out;*/
+/*}*/
+
+ul.ks-cboxtags li input[type="radio"]:checked + label {
+    border: 2px solid #1bdbf8;
+    background-color: #12bbd4;
+    color: #fff;
+    transition: all .2s;
+}
+
+ul.ks-cboxtags li input[type="radio"] {
+    display: absolute;
+}
+ul.ks-cboxtags li input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+}
+ul.ks-cboxtags li input[type="radio"]:focus + label {
+    border: 2px solid #e9a1ff;
+}
+
