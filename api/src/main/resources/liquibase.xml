@@ -199,4 +199,12 @@
     <changeSet id="hiv-screening-remove-not-null-screening-code" author="BOGUI SERGE">
         <dropNotNullConstraint tableName="hiv_screening_hiv_screening" columnName="screening_code" columnDataType="varchar(20)" />
     </changeSet>
+
+    <changeSet id="hiv-screening-alter-screening-change-comment-type" author="BOGUI SERGE">
+        <sql>
+            <![CDATA[
+            alter table hiv_screening_hiv_screening modify comment VARCHAR(255) null;
+            ]]>
+        </sql>
+    </changeSet>
 </databaseChangeLog>

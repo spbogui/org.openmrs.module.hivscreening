@@ -34,9 +34,9 @@
 						<bean class="${project.parent.groupId}.${project.parent.artifactId}.api.impl.HivScreeningRegisterServiceImpl">
 							<property name="dao">
 								<bean class="${project.parent.groupId}.${project.parent.artifactId}.api.db.hibernate.HibernateHivScreeningRegisterDAO">
-									<property name="sessionFactory">
-										<ref bean="sessionFactory" />
-									</property>
+<!--									<property name="sessionFactory">-->
+<!--										<ref bean="sessionFactory" />-->
+<!--									</property>-->
 								</bean>
 							</property>
 						</bean>

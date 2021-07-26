@@ -3,10 +3,8 @@ package org.openmrs.module.hivscreening.forms.validators;
 import org.openmrs.annotation.Handler;
 import org.openmrs.module.hivscreening.HivScreening;
 import org.openmrs.module.hivscreening.ScreeningRegisterInfo;
-import org.openmrs.module.hivscreening.TestingKit;
 import org.openmrs.module.hivscreening.enumerations.FinalResultType;
 import org.openmrs.module.hivscreening.enumerations.TestReactionType;
-import org.openmrs.module.hivscreening.forms.RegisterForm;
 import org.openmrs.module.hivscreening.forms.ScreeningForm;
 import org.openmrs.module.hivscreening.utils.UtilFunctions;
 import org.springframework.validation.Errors;
@@ -39,23 +37,39 @@ public class ScreeningFormValidator implements Validator {
 //            ValidationUtils.rejectIfEmpty(errors, "test3Reaction", null, "Ce champ est requis !");
             ValidationUtils.rejectIfEmpty(errors, "finalResult", null, "Requis !");
 
-            if (form.getSampling() == null || form.getSampling().isEmpty()) {
-                if (form.getScreeningCode() == null || form.getScreeningCode().isEmpty()){
-                    errors.rejectValue("screeningCode", null, "Requis !");
+           if (form.getSampling() == null || form.getSampling().isEmpty()) {
+               if (form.getScreeningCode() == null || form.getScreeningCode().isEmpty()){
+                   errors.rejectValue("screeningCode", null, "Requis !");
+               }
+               if (form.getGender() == null || form.getGender().isEmpty()){
+                   errors.rejectValue("gender", null, "Requis !");
+               }
+               if (form.getAge() == null) {
+                   errors.rejectValue("age", null, "Requis !");
+               }
+               if (form.getPopulationType() == null){
+                   errors.rejectValue("populationType", null, "Requis !");
+               }
+               if (form.getScreeningReason() == null){
+                   errors.rejectValue("screeningReason", null, "Requis !");
                 }
-                if (form.getGender() == null || form.getGender().isEmpty()){
-                    errors.rejectValue("gender", null, "Requis !");
-                }
-                if (form.getAge() == null) {
-                    errors.rejectValue("age", null, "Requis !");
-                }
-                if (form.getPopulationType() == null){
-                    errors.rejectValue("populationType", null, "Requis !");
-                }
-                if (form.getScreeningReason() == null){
-                    errors.rejectValue("screeningReason", null, "Requis !");
-                }
-            }
+           } else {
+               if (form.getGender() != null){
+                   errors.rejectValue("gender", null, "Pas nécessaire !");
+               }
+               if (form.getAge() != null) {
+                   errors.rejectValue("age", null, "Pas nécessaire !");
+               }
+               if (form.getPopulationType() != null){
+                   errors.rejectValue("populationType", null, "Pas nécessaire !");
+               }
+               if (form.getMaritalStatus() != null){
+                   errors.rejectValue("maritalStatus", null, "Pas nécessaire !");
+               }
+               if (form.getScreeningReason() != null){
+                   errors.rejectValue("screeningReason", null, "Pas nécessaire !");
+               }
+           }
 
             if (form.getScreeningDate() != null && form.getScreeningDate().after(new Date())) {
                 errors.rejectValue("screeningDate", null, "Incorect !");

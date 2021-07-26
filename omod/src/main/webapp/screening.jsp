@@ -32,10 +32,14 @@
             const sampling = jQuery('input[name=sampling]');
             const screeningCode = jQuery('input[name=screeningCode]');
 
-            if (jQuery('input[name=screeningCode]:checked').val()) {
+            if (sampling.is(':checked')) {
                 screeningCode.hide();
             }
 
+            // if (jQuery('input[name=sampling]:checked').val())
+            // sampling.on('click', function () {
+            //
+            // });
             otherMaritalStatus.hide();
             otherScreeningReason.hide();
             otherPopulationType.hide();
@@ -49,6 +53,10 @@
                 otherScreeningReason.show();
             }
 
+            if (populationType.val() === 'OTHER'){
+                otherPopulationType.show();
+            }
+
             maritalStatus.on('click', function () {
                 if (jQuery(this).val() === 'OTHER') {
                     otherMaritalStatus.show();
@@ -58,14 +66,14 @@
                 }
             });
 
-            // sampling.on('click', function () {
-            //     if (jQuery('input[name=screeningCode]:checked')) {
-            //         screeningCode.val('');
-            //         screeningCode.hide();
-            //     } else {
-            //         screeningCode.show();
-            //     }
-            // });
+            sampling.on('click', function () {
+                if (jQuery(this).is(':checked')) {
+                    screeningCode.val('');
+                    screeningCode.hide();
+                } else {
+                    screeningCode.show();
+                }
+            });
 
             screeningReason.on('click', function () {
                 if (jQuery(this).val() === 'OTHER') {
@@ -92,6 +100,14 @@
                 }
             });
 
+            populationType.on('change', function () {
+                if (jQuery(this).val() === 'OTHER') {
+                    otherPopulationType.show();
+                } else {
+                    otherPopulationType.val('');
+                    otherPopulationType.hide();
+                }
+            });
         });
         function checkFinalResult() {
             jQuery(':radio[readonly]:not(:checked)').attr('disabled', true);
@@ -254,7 +270,7 @@
                         <form:input path="screeningCode" cssClass="form-control form-control-sm" />
                         <form:errors path="screeningCode" cssClass="error"/>
                         <form:radiobutton path="sampling" cssClass="mt-2" value="EEQ" id="EEQ" label="EEQ"/>
-                        <form:radiobutton path="sampling" cssClass="mt-2" value="ECH" id="TEST" label="ECH"/>
+                        <form:radiobutton path="sampling" cssClass="mt-2" value="CQI" id="CQI" label="CQI"/>
                     </td>
                     <td class="align-middle text-center">
                         <form:input path="profession" cssClass="form-control form-control-sm" />
@@ -426,7 +442,7 @@
                     <td class="align-middle text-center">
                         <ul class="ks-cboxtags">
                             <li>
-                                <form:radiobutton path="invalidatedTest3" cssClass="" value="true" id="test3INV" />
+                                <form:radiobutton path="invalidatedTest3" cssClass="" id="test3INV" />
                                 <label for="test3INV">INV</label>
                             </li>
                             <li>
@@ -661,32 +677,34 @@
                     </tr>
 
                 </c:forEach>
-                <tr>
-                    <td colspan="6">
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination">
-                                <c:if test="${first != 0}">
-                                    <c:url value="/module/hivscreening/screening.form" var="previousUrl">
-                                        <c:param name="registerId" value="${registerInfo.id}"/>
-                                        <c:param name="first" value="${first - 1}"/>
-                                    </c:url>
-                                    <li class="page-item"><a class="page-link" href="${previousUrl}"><i class="fa fa-angle-left"></i> Précédent</a></li>
-                                </c:if>
-
-                                <c:if test="${last != page}">
-                                    <c:url value="/module/hivscreening/screening.form" var="nextUrl">
-                                        <c:param name="registerId" value="${registerInfo.id}"/>
-                                        <c:param name="first" value="${first + 1}"/>
-                                    </c:url>
-                                    <li class="page-item"><a class="page-link" href="${nextUrl}"><i class="fa fa-angle-right"></i>Suivant </a></li>
-                                </c:if>
-
-                            </ul>
-                        </nav>
-                    </td>
-                </tr>
                 </tbody>
             </table>
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="h4 mb-0">
+                    TOTAL = ${numberOfScreening}
+                </div>
+                <c:if test="${numberOfScreening > 10}">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                                <%--                                <c:if test="${first != 0}">--%>
+                                <%--                                </c:if>--%>
+                            <c:url value="/module/hivscreening/screening.form" var="previousUrl">
+                                <c:param name="registerId" value="${registerInfo.id}"/>
+                                <c:param name="first" value="${first - 1}"/>
+                            </c:url>
+                            <li class="page-item"><a class="page-link" href="${first != 0 ? previousUrl : '#'}"><i class="fa fa-arrow-left fa-2x"></i></a></li>
+
+                            <c:if test="${last != page}">
+                            </c:if>
+                            <c:url value="/module/hivscreening/screening.form" var="nextUrl">
+                                <c:param name="registerId" value="${registerInfo.id}"/>
+                                <c:param name="first" value="${first + 1}"/>
+                            </c:url>
+                            <li class="page-item"><a class="page-link" href="${last != page ? nextUrl : '#'}"><i class="fa fa-arrow-right fa-2x"></i> </a></li>
+                        </ul>
+                    </nav>
+                </c:if>
+            </div>
         </form:form>
     </div>
 </div>

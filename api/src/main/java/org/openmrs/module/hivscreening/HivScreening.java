@@ -52,7 +52,7 @@ public class HivScreening extends AbstractObject {
 	@Column(name = "profession")
 	private String profession;
 
-	@Column(name = "gender", nullable = false, length = 2)
+	@Column(name = "gender")
 	private String gender;
 
 	@Column(name = "age")
@@ -67,10 +67,10 @@ public class HivScreening extends AbstractObject {
 	@Column(name = "other_marital_status")
 	private String otherMaritalStatus;
 
-	@Column(name = "population_type", nullable = false)
+	@Column(name = "population_type")
 	private PopulationType populationType;
 
-	@Column(name = "other_population_type", nullable = false)
+	@Column(name = "other_population_type")
 	private String otherPopulationType;
 
 	@Column(name = "screening_reason")
@@ -88,13 +88,13 @@ public class HivScreening extends AbstractObject {
 	@Column(name = "invalidated_test2", nullable = false)
 	private boolean invalidatedTest2 = false;
 
-	@Column(name = "test2_reaction", nullable = false)
+	@Column(name = "test2_reaction")
 	private TestReactionType test2Reaction;
 
 	@Column(name = "invalidated_test3", nullable = false)
 	private boolean invalidatedTest3 = false;
 
-	@Column(name = "test3_reaction", nullable = false)
+	@Column(name = "test3_reaction")
 	private TestReactionType test3Reaction;
 
 	@Column(name = "final_result", nullable = false)
@@ -103,8 +103,8 @@ public class HivScreening extends AbstractObject {
 	@Column(name = "result_announcing_date")
 	private Date resultAnnouncingDate;
 
-	@Column(name = "retesting", nullable = false)
-	private Boolean retesting;
+	@Column(name = "retesting")
+	private Boolean retesting = false;
 
 	@Column(name = "comment")
 	private String comment;

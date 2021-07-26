@@ -19,34 +19,43 @@ import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
+import org.openmrs.api.db.hibernate.DbSessionFactory;
 import org.openmrs.module.hivscreening.HivScreening;
 import org.openmrs.module.hivscreening.ScreeningRegisterInfo;
 import org.openmrs.module.hivscreening.TestingKit;
 import org.openmrs.module.hivscreening.api.db.HivScreeningRegisterDAO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 /**
  * It is a default implementation of  {@link HivScreeningRegisterDAO}.
  */
+@Repository
 public class HibernateHivScreeningRegisterDAO implements HivScreeningRegisterDAO {
 	protected final Log log = LogFactory.getLog(this.getClass());
+
+	@Autowired
+	private DbSessionFactory sessionFactory;
+//	private SessionFactory sessionFactory;
 	
-	private SessionFactory sessionFactory;
-	
-	/**
-     * @param sessionFactory the sessionFactory to set
-     */
-    public void setSessionFactory(SessionFactory sessionFactory) {
-	    this.sessionFactory = sessionFactory;
-    }
-    
-	/**
-     * @return the sessionFactory
-     */
-    public SessionFactory getSessionFactory() {
-	    return sessionFactory;
-    }
+//	private SessionFactory sessionFactory;
+//
+//	/**
+//     * @param sessionFactory the sessionFactory to set
+//     */
+//    public void setSessionFactory(SessionFactory sessionFactory) {
+//	    this.sessionFactory = sessionFactory;
+//    }
+//
+//	/**
+//     * @return the sessionFactory
+//     */
+//    public SessionFactory getSessionFactory() {
+//	    return sessionFactory;
+//    }
+
 
 	@Override
 	public TestingKit getTestingKitById(Integer testingKitId) {
@@ -121,7 +130,8 @@ public class HibernateHivScreeningRegisterDAO implements HivScreeningRegisterDAO
 
 	@Override
 	public Integer countScreening(ScreeningRegisterInfo registerInfo) {
-		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(ScreeningRegisterInfo.class);
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(HivScreening.class)
+				.add(Restrictions.eq("registerInfo", registerInfo));
 		return criteria.list().size();
 	}
 }

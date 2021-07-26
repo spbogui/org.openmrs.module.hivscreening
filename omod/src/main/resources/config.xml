@@ -15,17 +15,14 @@
 	<require_version>${openMRSVersion}</require_version>
 	<!-- / Module Properties -->
 
+	<require_modules>
+		<require_module version="2.13">org.openmrs.module.webservices.rest</require_module>
+	</require_modules>
 	
 	<!-- Module Activator -->
 	<activator>${project.parent.groupId}.${project.parent.artifactId}.HivScreeningRegisterActivator</activator>
 	
-	
-	<!-- Adds link to admin page -->
-	<extension>
-		<point>org.openmrs.admin.list</point>
-		<class>${project.parent.groupId}.${project.parent.artifactId}.extension.html.AdminList</class>
-	</extension>
-	
+
 	<!-- Maps hibernate file's, if present -->
 <!--	<mappingFiles>-->
 <!--				-->

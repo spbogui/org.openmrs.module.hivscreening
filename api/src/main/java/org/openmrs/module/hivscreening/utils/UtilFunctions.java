@@ -43,12 +43,12 @@ public class UtilFunctions {
 
     public static Integer getTestingKitMaxCount(String kitName, String testType) {
         String getPropertyValue = getPropertyGlobalProperties(testType);
-        System.out.println("------------------------------------- get Max count : " + getPropertyValue);
+//        System.out.println("------------------------------------- get Max count : " + getPropertyValue);
         if (getPropertyValue != null) {
             String[] kitList = getPropertyValue.split(",");
             for (String kit : kitList) {
                 String[] data = kit.split(":");
-                System.out.println("------------------------------------- get Max count : " + data[0]);
+//                System.out.println("------------------------------------- get Max count : " + data[0]);
                 if (data[0].equals(kitName)) {
                     return Integer.parseInt(data[1]);
                 }

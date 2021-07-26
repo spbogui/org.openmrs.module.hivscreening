@@ -203,14 +203,14 @@ public class  HivScreeningRegisterManageController {
 
 				Integer countScreening = Context.getService(HivScreeningRegisterService.class).countScreening(registerInfo);
 				Integer page = first + 1;
-				double last = Math.ceil(countScreening / 10.0);
+				double last = Math.ceil(countScreening / (numberOfLine * 1.0));
 				model.addAttribute("registerInfo", registerInfo);
 				model.addAttribute("screeningForm", screeningForm);
 				model.addAttribute("first", first);
 				model.addAttribute("last", (int) last);
 				model.addAttribute("page", page);
 				model.addAttribute("numberOfScreening", countScreening);
-				model.addAttribute("hivScreenings", UtilFunctions.service().getAllHivScreening(first, numberOfLine, registerInfo));
+				model.addAttribute("hivScreenings", UtilFunctions.service().getAllHivScreening(first * numberOfLine, numberOfLine, registerInfo));
 			}
 		}
 		return null;
