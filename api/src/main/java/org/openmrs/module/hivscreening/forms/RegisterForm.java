@@ -186,24 +186,24 @@ public class RegisterForm {
         if (getTestingKit1Id() != null) {
             testingKit = service().getTestingKitById(getTestingKit1Id());
         } else {
-            if (getTestingKit1BatchNumber() != null) {
-                TestingKit existingKit = UtilFunctions.service().getTestingKitByBatchNumber(getTestingKit1BatchNumber());
-                if (existingKit != null) {
-                    testingKit = UtilFunctions.service().getTestingKitByBatchNumber(getTestingKit1BatchNumber());
-                } else {
-                    testingKit.setBatchNumber(getTestingKit1BatchNumber());
-                    testingKit.setExpiryDate(getTestingKit1ExpiryDate());
-                    testingKit.setDateCreated(new Date());
-                    testingKit.setName(getTestingKit1Name());
-                    testingKit.setLocation(UtilFunctions.getUserLocation());
-                }
-            } else {
+            TestingKit existingKit = UtilFunctions.service().getTestingKitByBatchNumber(getTestingKit1BatchNumber());
+            if (existingKit == null) {
                 testingKit.setBatchNumber(getTestingKit1BatchNumber());
                 testingKit.setExpiryDate(getTestingKit1ExpiryDate());
                 testingKit.setDateCreated(new Date());
                 testingKit.setName(getTestingKit1Name());
                 testingKit.setLocation(UtilFunctions.getUserLocation());
-            }
+            }/* else {
+
+            }*/
+//            if (getTestingKit1BatchNumber() != null) {
+//            } else {
+//                testingKit.setBatchNumber(getTestingKit1BatchNumber());
+//                testingKit.setExpiryDate(getTestingKit1ExpiryDate());
+//                testingKit.setDateCreated(new Date());
+//                testingKit.setName(getTestingKit1Name());
+//                testingKit.setLocation(UtilFunctions.getUserLocation());
+//            }
         }
         return testingKit;
     }
@@ -213,24 +213,24 @@ public class RegisterForm {
         if (getTestingKit2Id() != null) {
             testingKit = service().getTestingKitById(getTestingKit2Id());
         } else {
+            TestingKit existingKit = UtilFunctions.service().getTestingKitByBatchNumber(getTestingKit2BatchNumber());
+            if (existingKit == null) {
+                testingKit.setBatchNumber(getTestingKit2BatchNumber());
+                testingKit.setExpiryDate(getTestingKit2ExpiryDate());
+                testingKit.setDateCreated(new Date());
+                testingKit.setName(getTestingKit2Name());
+                testingKit.setLocation(UtilFunctions.getUserLocation());
+            } /*else {
+
+            }
             if (getTestingKit2BatchNumber() != null) {
-                TestingKit existingKit = UtilFunctions.service().getTestingKitByBatchNumber(getTestingKit2BatchNumber());
-                if (existingKit != null) {
-                    testingKit = UtilFunctions.service().getTestingKitByBatchNumber(getTestingKit2BatchNumber());
-                } else {
-                    testingKit.setBatchNumber(getTestingKit2BatchNumber());
-                    testingKit.setExpiryDate(getTestingKit2ExpiryDate());
-                    testingKit.setDateCreated(new Date());
-                    testingKit.setName(getTestingKit2Name());
-                    testingKit.setLocation(UtilFunctions.getUserLocation());
-                }
             } else {
                 testingKit.setBatchNumber(getTestingKit2BatchNumber());
                 testingKit.setExpiryDate(getTestingKit2ExpiryDate());
                 testingKit.setDateCreated(new Date());
                 testingKit.setName(getTestingKit2Name());
                 testingKit.setLocation(UtilFunctions.getUserLocation());
-            }
+            }*/
         }
         return testingKit;
     }
@@ -240,25 +240,24 @@ public class RegisterForm {
         if (getLabTestingKitId() != null) {
             testingKit = service().getTestingKitById(getLabTestingKitId());
         } else {
-            if (getLabTestingKitBatchNumber() != null) {
-                TestingKit existingKit = UtilFunctions.service().getTestingKitByBatchNumber(getLabTestingKitBatchNumber());
-                if (existingKit != null) {
-                    testingKit = UtilFunctions.service().getTestingKitByBatchNumber(getLabTestingKitBatchNumber());
+            TestingKit existingKit = UtilFunctions.service().getTestingKitByBatchNumber(getLabTestingKitBatchNumber());
+            if (existingKit == null) {
+                testingKit.setBatchNumber(getLabTestingKitBatchNumber());
+                testingKit.setExpiryDate(getLabTestingKitExpiryDate());
+                testingKit.setDateCreated(new Date());
+                testingKit.setName(getLabTestingKitName());
+                testingKit.setLocation(UtilFunctions.getUserLocation());
+            } /*else {
+
+                }
+                if (getLabTestingKitBatchNumber() != null) {
                 } else {
                     testingKit.setBatchNumber(getLabTestingKitBatchNumber());
                     testingKit.setExpiryDate(getLabTestingKitExpiryDate());
                     testingKit.setDateCreated(new Date());
                     testingKit.setName(getLabTestingKitName());
                     testingKit.setLocation(UtilFunctions.getUserLocation());
-                }
-            } else {
-                testingKit.setBatchNumber(getLabTestingKitBatchNumber());
-                testingKit.setExpiryDate(getLabTestingKitExpiryDate());
-                testingKit.setDateCreated(new Date());
-                testingKit.setName(getLabTestingKitName());
-                testingKit.setLocation(UtilFunctions.getUserLocation());
-            }
-
+                }*/
         }
         return testingKit;
     }

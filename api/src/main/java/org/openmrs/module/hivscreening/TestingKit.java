@@ -20,7 +20,7 @@ public class TestingKit extends AbstractObject {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "batch_number", nullable = false, length = 20, unique = true)
+    @Column(name = "batch_number", nullable = false, length = 20)
     private String batchNumber;
 
     @Column(name = "expiry_date", nullable = false)

@@ -90,7 +90,7 @@ public class UtilFunctions {
         services.put(8,"Diabétologie");
         services.put(9,"Dispensaire");
         services.put(10,"Gastro-entérologie");
-        services.put(11,"Gynécologie-obstétrique ");
+        services.put(11,"Gynécologie-obstétrique");
         services.put(12,"Hématologie");
         services.put(13,"Hospitalisation");
         services.put(14,"Laboratoire");
@@ -110,7 +110,7 @@ public class UtilFunctions {
 //        services.put(28,"Rééducation et réadaptation fonctionnelles");
         services.put(28,"Rhumatologie");
         services.put(29,"SMIT");
-        services.put(30,"Traumatologie et chirurgie orthopédique ");
+        services.put(30,"Traumatologie et chirurgie orthopédique");
         services.put(31,"Urgences");
         services.put(32,"Urologie");
         services.put(33,"CAT");
